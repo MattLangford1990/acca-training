@@ -459,6 +459,29 @@
             .data-table { font-size: 14px; }
             .data-table th, .data-table td { padding: 10px; }
         }
+        /* Enhanced Question Type Styles */
+        .question-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .question-header { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid var(--primary); }
+        .q-number { font-size: 18px; font-weight: bold; color: var(--primary); }
+        .q-marks { font-size: 14px; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; }
+        .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 25px; color: var(--dark); }
+        .options-grid { display: flex; flex-direction: column; gap: 12px; }
+        .option-item { display: flex; align-items: center; padding: 15px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .option-item:hover { border-color: var(--primary); background: #f5f8ff; }
+        .option-item input { margin-right: 15px; width: 20px; height: 20px; cursor: pointer; }
+        .option-content { display: flex; align-items: center; flex: 1; }
+        .option-letter { font-weight: bold; color: var(--primary); margin-right: 12px; font-size: 18px; min-width: 25px; }
+        .option-text { flex: 1; font-size: 15px; }
+        .instruction-box { background: #e3f2fd; border-left: 4px solid var(--primary); padding: 15px; margin-bottom: 20px; border-radius: 4px; }
+        .tf-container { display: flex; gap: 20px; justify-content: center; padding: 30px; }
+        .tf-option { flex: 1; max-width: 200px; display: flex; align-items: center; justify-content: center; padding: 20px; border: 3px solid #e0e0e0; border-radius: 12px; cursor: pointer; transition: all 0.3s; }
+        .tf-option:hover { border-color: var(--primary); transform: scale(1.05); }
+        .tf-label { font-size: 18px; font-weight: bold; }
+        .number-entry-box { background: var(--light); padding: 25px; border-radius: 8px; }
+        .entry-label { display: block; font-weight: 600; margin-bottom: 15px; }
+        .number-input { width: 250px; padding: 12px; font-size: 18px; border: 2px solid var(--primary); border-radius: 6px; }
+        .constructed-textarea { width: 100%; padding: 15px; font-size: 14px; font-family: monospace; border: 2px solid var(--primary); border-radius: 6px; resize: vertical; min-height: 200px; }
+        .hint-text { display: block; margin-top: 10px; color: #666; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -1021,25 +1044,16 @@
             const container = document.getElementById('questionContainer');
             container.innerHTML = '';
             
+            // Initialize answers storage
+            window.examAnswers = {};
+            window.currentQuestionData = {};
+            
             currentExam.questions.forEach((q, idx) => {
                 const block = document.createElement('div');
                 block.className = 'question-block';
                 
-                const optionsHtml = q.options.map((opt, i) => {
-                    const letter = opt.charAt(0);
-                    const id = `q${idx}_${letter}`;
-                    return `
-                        <div class="option" onclick="selectOption(${idx}, '${letter}')">
-                            <input type="radio" name="q${idx}" id="${id}" value="${letter}">
-                            <label for="${id}">${opt}</label>
-                        </div>
-                    `;
-                }).join('');
-                
-                block.innerHTML = `
-                    <div class="question-text"><strong>Q${idx + 1}.</strong> ${q.text}</div>
-                    <div class="options">${optionsHtml}</div>
-                `;
+                // Use enhanced renderer with randomization
+                block.innerHTML = window.renderEnhancedQuestion(q, idx);
                 
                 container.appendChild(block);
             });
@@ -1048,12 +1062,14 @@
         function selectOption(qIdx, answer) {
             const options = document.querySelectorAll(`input[name="q${qIdx}"]`);
             options.forEach(opt => {
-                opt.closest('.option').classList.remove('selected');
+                opt.closest('.option-item')?.classList.remove('selected');
             });
             
-            const selected = document.getElementById(`q${qIdx}_${answer}`);
-            selected.checked = true;
-            selected.closest('.option').classList.add('selected');
+            const selected = document.querySelector(`input[name="q${qIdx}"][value="${answer}"]`);
+            if (selected) {
+                selected.checked = true;
+                selected.closest('.option-item')?.classList.add('selected');
+            }
             
             currentExam.answers[qIdx] = answer;
             updateProgress();
@@ -1082,17 +1098,25 @@
             examResults = [];
             
             currentExam.questions.forEach((q, idx) => {
-                const userAnswer = currentExam.answers[idx] || null;
-                const isCorrect = userAnswer === q.answer;
+                // Get stored randomized question data
+                const randomizedQ = window.currentQuestionData?.[idx] || q;
+                const userAnswer = window.examAnswers?.[idx];
+                const correctAnswer = randomizedQ.correctAnswer || [0];
+                const questionType = randomizedQ.type || 'mcq-single';
+                
+                // Use enhanced answer checking
+                const isCorrect = window.checkEnhancedAnswer(userAnswer, correctAnswer, questionType);
+                
                 if (isCorrect) correct++;
                 
                 examResults.push({
                     questionNum: idx + 1,
                     text: q.text,
-                    options: q.options,
-                    userAnswer,
-                    correctAnswer: q.answer,
-                    isCorrect
+                    options: randomizedQ.options,
+                    userAnswer: userAnswer?.value,
+                    correctAnswer: correctAnswer,
+                    isCorrect,
+                    questionType
                 });
             });
             
@@ -1345,6 +1369,169 @@
 
         // Initialize
         init();
+        
+        // ============================================
+        // ENHANCED EXAM ENGINE - PROPER ACCA FORMAT
+        // ============================================
+        
+        // Question type detection
+        window.detectQuestionType = function(q) {
+            if (q.type) return q.type;
+            if (q.options && q.options.length === 2) return 'true-false';
+            if (q.multipleAnswers || (Array.isArray(q.answer) && q.answer.length > 1)) return 'mcq-multiple';
+            if (q.isNumberEntry) return 'number-entry';
+            return 'mcq-single';
+        };
+        
+        // Randomize options to prevent all "B" answers
+        window.randomizeOptions = function(question) {
+            const q = JSON.parse(JSON.stringify(question));
+            const type = window.detectQuestionType(q);
+            
+            if (type !== 'mcq-single' && type !== 'mcq-multiple') return q;
+            if (!q.options || q.options.length === 0) return q;
+            
+            // Get correct index
+            let correctIdx = 0;
+            if (typeof q.answer === 'string') {
+                correctIdx = q.answer.charCodeAt(0) - 65;
+            } else if (typeof q.answer === 'number') {
+                correctIdx = q.answer;
+            }
+            
+            // Remove A. B. C. D. prefixes
+            const cleanOpts = q.options.map(o => 
+                typeof o === 'string' ? o.replace(/^[A-D]\.?\s*/, '') : o
+            );
+            
+            // Shuffle using Fisher-Yates
+            const indices = cleanOpts.map((_, i) => i);
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+            
+            const shuffled = indices.map(i => cleanOpts[i]);
+            const newCorrect = indices.indexOf(correctIdx);
+            
+            return {...q, options: shuffled, correctAnswer: [newCorrect], type};
+        };
+        
+        // Enhanced question rendering
+        window.renderEnhancedQuestion = function(q, num) {
+            const randomized = window.randomizeOptions(q);
+            window.currentQuestionData = window.currentQuestionData || {};
+            window.currentQuestionData[num] = randomized;
+            
+            const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+            const type = randomized.type || 'mcq-single';
+            
+            let html = `
+                <div class="question-card">
+                    <div class="question-header">
+                        <span class="q-number">Question ${num}</span>
+                        <span class="q-marks">${randomized.marks || 1} mark(s)</span>
+                    </div>
+                    <div class="question-text">${randomized.text}</div>`;
+            
+            if (type === 'mcq-single') {
+                html += '<div class="options-grid">';
+                randomized.options.forEach((opt, i) => {
+                    html += `
+                        <label class="option-item">
+                            <input type="radio" name="q${num}" value="${i}" 
+                                   onchange="window.recordAnswer(${num}, ${i}, '${type}')">
+                            <div class="option-content">
+                                <span class="option-letter">${letters[i]}</span>
+                                <span class="option-text">${opt}</span>
+                            </div>
+                        </label>`;
+                });
+                html += '</div>';
+            } else if (type === 'mcq-multiple') {
+                html += '<div class="instruction-box"><strong>Select multiple correct answers</strong></div>';
+                html += '<div class="options-grid">';
+                randomized.options.forEach((opt, i) => {
+                    html += `
+                        <label class="option-item">
+                            <input type="checkbox" name="q${num}" value="${i}" 
+                                   onchange="window.recordMultipleAnswer(${num}, ${i})">
+                            <div class="option-content">
+                                <span class="option-letter">${letters[i]}</span>
+                                <span class="option-text">${opt}</span>
+                            </div>
+                        </label>`;
+                });
+                html += '</div>';
+            } else if (type === 'number-entry') {
+                html += `
+                    <div class="number-entry-box">
+                        <label class="entry-label">Enter your calculated answer:</label>
+                        <input type="number" class="number-input" step="0.01" 
+                               placeholder="0.00"
+                               onchange="window.recordAnswer(${num}, this.value, 'number-entry')">
+                        <small class="hint-text">💡 Show workings for full marks</small>
+                    </div>`;
+            } else if (type === 'true-false') {
+                html += `
+                    <div class="tf-container">
+                        <label class="tf-option">
+                            <input type="radio" name="q${num}" value="0" 
+                                   onchange="window.recordAnswer(${num}, 0, 'true-false')">
+                            <span class="tf-label">TRUE</span>
+                        </label>
+                        <label class="tf-option">
+                            <input type="radio" name="q${num}" value="1" 
+                                   onchange="window.recordAnswer(${num}, 1, 'true-false')">
+                            <span class="tf-label">FALSE</span>
+                        </label>
+                    </div>`;
+            }
+            
+            html += '</div>';
+            return html;
+        };
+        
+        // Record answers
+        window.recordAnswer = function(qNum, answer, type) {
+            if (!window.examAnswers) window.examAnswers = {};
+            window.examAnswers[qNum] = {value: answer, type: type};
+            console.log(`Q${qNum}: ${answer} (${type})`);
+        };
+        
+        window.recordMultipleAnswer = function(qNum, index) {
+            if (!window.examAnswers) window.examAnswers = {};
+            if (!window.examAnswers[qNum]) {
+                window.examAnswers[qNum] = {value: [], type: 'mcq-multiple'};
+            }
+            const answers = window.examAnswers[qNum].value;
+            const idx = answers.indexOf(index);
+            if (idx > -1) answers.splice(idx, 1);
+            else answers.push(index);
+        };
+        
+        // Enhanced answer checking
+        window.checkEnhancedAnswer = function(userAns, correctAns, type) {
+            if (!userAns || userAns.value === undefined) return false;
+            
+            const user = userAns.value;
+            const correct = Array.isArray(correctAns) ? correctAns : [correctAns];
+            
+            if (type === 'mcq-multiple') {
+                const userArr = Array.isArray(user) ? user.sort() : [];
+                const correctArr = correct.sort();
+                return JSON.stringify(userArr) === JSON.stringify(correctArr);
+            }
+            
+            if (type === 'number-entry') {
+                const tolerance = 0.02;
+                return Math.abs(parseFloat(user) - parseFloat(correct[0])) < tolerance;
+            }
+            
+            return parseInt(user) === parseInt(correct[0]);
+        };
+        
+        console.log('✅ Enhanced ACCA Exam Engine Loaded - Answers Randomized!');
     </script>
     <script src="dashboard.js?v=4"></script>
 </body>
