@@ -1052,8 +1052,8 @@
                 const block = document.createElement('div');
                 block.className = 'question-block';
                 
-                // Use enhanced renderer with randomization
-                block.innerHTML = window.renderEnhancedQuestion(q, idx);
+                // Use enhanced renderer with randomization (idx+1 for display)
+                block.innerHTML = window.renderEnhancedQuestion(q, idx, idx + 1);
                 
                 container.appendChild(block);
             });
@@ -1418,10 +1418,10 @@
         };
         
         // Enhanced question rendering
-        window.renderEnhancedQuestion = function(q, num) {
+        window.renderEnhancedQuestion = function(q, idx, displayNum) {
             const randomized = window.randomizeOptions(q);
             window.currentQuestionData = window.currentQuestionData || {};
-            window.currentQuestionData[num] = randomized;
+            window.currentQuestionData[idx] = randomized;
             
             const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
             const type = randomized.type || 'mcq-single';
@@ -1429,7 +1429,7 @@
             let html = `
                 <div class="question-card">
                     <div class="question-header">
-                        <span class="q-number">Question ${num}</span>
+                        <span class="q-number">Question ${displayNum || (idx + 1)}</span>
                         <span class="q-marks">${randomized.marks || 1} mark(s)</span>
                     </div>
                     <div class="question-text">${randomized.text}</div>`;
@@ -1439,8 +1439,8 @@
                 randomized.options.forEach((opt, i) => {
                     html += `
                         <label class="option-item">
-                            <input type="radio" name="q${num}" value="${i}" 
-                                   onchange="window.recordAnswer(${num}, ${i}, '${type}')">
+                            <input type="radio" name="q${idx}" value="${i}" 
+                                   onchange="window.recordAnswer(${idx}, ${i}, '${type}')">
                             <div class="option-content">
                                 <span class="option-letter">${letters[i]}</span>
                                 <span class="option-text">${opt}</span>
@@ -1454,8 +1454,8 @@
                 randomized.options.forEach((opt, i) => {
                     html += `
                         <label class="option-item">
-                            <input type="checkbox" name="q${num}" value="${i}" 
-                                   onchange="window.recordMultipleAnswer(${num}, ${i})">
+                            <input type="checkbox" name="q${idx}" value="${i}" 
+                                   onchange="window.recordMultipleAnswer(${idx}, ${i})">
                             <div class="option-content">
                                 <span class="option-letter">${letters[i]}</span>
                                 <span class="option-text">${opt}</span>
@@ -1469,20 +1469,20 @@
                         <label class="entry-label">Enter your calculated answer:</label>
                         <input type="number" class="number-input" step="0.01" 
                                placeholder="0.00"
-                               onchange="window.recordAnswer(${num}, this.value, 'number-entry')">
+                               onchange="window.recordAnswer(${idx}, this.value, 'number-entry')">
                         <small class="hint-text">💡 Show workings for full marks</small>
                     </div>`;
             } else if (type === 'true-false') {
                 html += `
                     <div class="tf-container">
                         <label class="tf-option">
-                            <input type="radio" name="q${num}" value="0" 
-                                   onchange="window.recordAnswer(${num}, 0, 'true-false')">
+                            <input type="radio" name="q${idx}" value="0" 
+                                   onchange="window.recordAnswer(${idx}, 0, 'true-false')">
                             <span class="tf-label">TRUE</span>
                         </label>
                         <label class="tf-option">
-                            <input type="radio" name="q${num}" value="1" 
-                                   onchange="window.recordAnswer(${num}, 1, 'true-false')">
+                            <input type="radio" name="q${idx}" value="1" 
+                                   onchange="window.recordAnswer(${idx}, 1, 'true-false')">
                             <span class="tf-label">FALSE</span>
                         </label>
                     </div>`;
