@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCA Complete - All 13 Modules</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #003366;
+            --primary-light: #0066cc;
+            --secondary: #667eea;
+            --secondary-dark: #764ba2;
+            --success: #28a745;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; }
+
+        /* Auth Screens */
+        .auth-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 450px;
+            margin: 50px auto;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .auth-header { text-align: center; margin-bottom: 30px; }
+        .auth-header h1 { color: var(--primary); font-size: 28px; margin-bottom: 10px; }
+        .auth-header p { color: #666; font-size: 14px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--dark); font-weight: 500; }
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .form-group input:focus { outline: none; border-color: var(--primary-light); }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+
+        .switch-auth { text-align: center; margin-top: 20px; color: #666; }
+        .switch-auth a { color: var(--primary-light); text-decoration: none; font-weight: bold; }
+
+        .message { padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+        .error-message { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .success-message { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
+        /* Dashboard */
+        .dashboard-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px;
+        }
+        .dashboard-header h1 { font-size: 28px; margin-bottom: 5px; }
+        .dashboard-header p { opacity: 0.9; font-size: 14px; }
+
+        .dashboard-nav {
+            background: var(--light);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e9ecef;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; }
+        .nav-link {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+
+        .logout-btn {
+            padding: 8px 20px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .dashboard-content { padding: 30px; }
+
+        /* Module Groups */
+        .module-level {
+            margin-bottom: 40px;
+        }
+
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-light);
+        }
+
+        .level-icon {
+            font-size: 32px;
+        }
+
+        .level-title {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .level-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Module Grid */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .module-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .module-card .module-code {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .module-card p {
+            opacity: 0.85;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .module-stats {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Color variations for different levels */
+        .module-card.knowledge { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .module-card.skills { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .module-card.professional { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+        /* Rest of styles remain same as before */
+        .module-dashboard { max-width: 900px; margin: 0 auto; }
+        .back-btn {
+            padding: 10px 20px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .module-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .exam-section, .quiz-section {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .start-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--success) 0%, #20c997 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .quiz-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quiz-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        .exam-interface {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .exam-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .exam-progress { padding: 20px 30px; background: var(--light); }
+        .progress-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            text-align: center;
+            color: #666;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        .question-container {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .question-block {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary-light);
+        }
+        .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .option:hover {
+            border-color: var(--primary-light);
+            background: #f0f7ff;
+        }
+        .option input {
+            margin-right: 12px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--primary-light);
+        }
+        .option.selected {
+            border-color: var(--primary-light);
+            background: #e3f2fd;
+            border-width: 3px;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: var(--light);
+        }
+        .nav-btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .results-header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .results-header.pass { background: linear-gradient(135deg, var(--success) 0%, #20c997 100%); }
+        .results-header.fail { background: linear-gradient(135deg, var(--danger) 0%, #c82333 100%); }
+        .score-display { font-size: 64px; font-weight: bold; margin: 20px 0; }
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .score-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .score-card .score { font-size: 36px; font-weight: bold; }
+        .review-section { margin-top: 30px; }
+        .filter-buttons { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #dee2e6;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .filter-btn.active {
+            background: var(--primary-light);
+            color: white;
+        }
+        .review-question {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .review-result-badge {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        .review-result-badge.correct { background: #d4edda; color: #155724; }
+        .review-result-badge.incorrect { background: #f8d7da; color: #721c24; }
+
+        /* Admin Styles */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-value { font-size: 36px; font-weight: bold; }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .data-table thead {
+            background: var(--primary);
+            color: white;
+        }
+        .data-table th, .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .data-table tbody tr:hover { background: var(--light); }
+        .data-table tbody tr:last-child td { border-bottom: none; }
+        
+        .hidden { display: none !important; }
+        
+        @media (max-width: 768px) {
+            .module-grid { grid-template-columns: 1fr; }
+            .data-table { font-size: 14px; }
+            .data-table th, .data-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login -->
+    <div id="loginScreen" class="auth-container">
+        <div class="logo">AC</div>
+        <div class="auth-header">
+            <h1>ACCA Complete</h1>
+            <p>All 13 Modules • Full ACCA Qualification</p>
+        </div>
+        <div id="loginError" class="message error-message hidden"></div>
+        <form onsubmit="return handleLogin(event)">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="loginUsername" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="switch-auth">
+            Don't have an account? <a href="#" onclick="showRegister(); return false;">Register</a>
+        </div>
+    </div>
+
+    <!-- Register -->
+    <div id="registerScreen" class="auth-container hidden">
+        <div class="logo">AC</div>
+        <div class="auth-header">
+            <h1>Create Account</h1>
+            <p>Start your ACCA journey</p>
+        </div>
+        <div id="registerError" class="message error-message hidden"></div>
+        <div id="registerSuccess" class="message success-message hidden"></div>
+        <form onsubmit="return handleRegister(event)">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="registerName" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="registerEmail" required>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="registerUsername" required minlength="4">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="registerPassword" required minlength="6">
+            </div>
+            <button type="submit" class="btn">Create Account</button>
+        </form>
+        <div class="switch-auth">
+            Have an account? <a href="#" onclick="showLogin(); return false;">Login</a>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" class="container hidden">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Welcome, <span id="studentName"></span>!</h1>
+                <p>Complete ACCA Qualification - 13 Modules</p>
+            </div>
+            <div class="dashboard-nav">
+                <div class="nav-links">
+                    <div class="nav-link active">Modules</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+            <div class="dashboard-content" id="moduleContent"></div>
+        </div>
+    </div>
+
+    <!-- Module Dashboard -->
+    <div id="moduleDashboard" class="container hidden">
+        <div class="module-dashboard">
+            <button class="back-btn" onclick="backToModules()">← Back</button>
+            <div class="module-header">
+                <h2 id="moduleTitle"></h2>
+                <p id="moduleDescription"></p>
+            </div>
+            <div class="exam-section">
+                <h3>📚 Full Exam</h3>
+                <p style="margin-bottom: 20px;">Complete mock exam with random questions</p>
+                <button class="start-btn" onclick="startFullExam()">Start Full Exam</button>
+            </div>
+            <div class="quiz-section">
+                <h3>🎯 Topic Quizzes</h3>
+                <div class="quiz-grid" id="quizGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Interface -->
+    <div id="examInterface" class="container hidden">
+        <div class="exam-interface">
+            <div class="exam-header">
+                <h1 id="examTitle"></h1>
+                <p id="examSubtitle"></p>
+            </div>
+            <div class="exam-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText"></div>
+            </div>
+            <div class="question-container" id="questionContainer"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" style="background: #6c757d;" onclick="exitExam()">Exit</button>
+                <button class="nav-btn" style="background: var(--success);" onclick="submitExam()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsScreen" class="container hidden">
+        <div style="padding: 30px;">
+            <div class="results-header" id="resultsHeader">
+                <h2 id="resultTitle"></h2>
+                <div class="score-display" id="scoreDisplay"></div>
+                <p id="resultMessage"></p>
+            </div>
+            <div class="score-breakdown">
+                <div class="score-card">
+                    <h3>Score</h3>
+                    <div class="score" id="totalScore"></div>
+                </div>
+                <div class="score-card">
+                    <h3>Correct</h3>
+                    <div class="score" id="correctCount"></div>
+                </div>
+                <div class="score-card">
+                    <h3>Status</h3>
+                    <div class="score" id="passStatus"></div>
+                </div>
+            </div>
+            <div class="review-section">
+                <h3 style="margin-bottom: 20px;">Review Questions</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterReview('all')">All (<span id="countAll">0</span>)</button>
+                    <button class="filter-btn" onclick="filterReview('correct')">✓ Correct (<span id="countCorrect">0</span>)</button>
+                    <button class="filter-btn" onclick="filterReview('incorrect')">✗ Incorrect (<span id="countIncorrect">0</span>)</button>
+                </div>
+                <div id="reviewContent"></div>
+            </div>
+            <div style="margin-top: 30px;">
+                <button class="btn" onclick="backToModule()">Back to Module</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="container hidden">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <p>Platform Management</p>
+            </div>
+            <div class="dashboard-nav">
+                <div class="nav-links">
+                    <div class="nav-link active" onclick="showAdminTab('overview')">Overview</div>
+                    <div class="nav-link" onclick="showAdminTab('users')">Users</div>
+                    <div class="nav-link" onclick="showAdminTab('analytics')">Analytics</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+            <div class="dashboard-content">
+                <div id="adminOverview">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>USERS</h3>
+                            <div class="stat-value" id="adminUserCount">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>EXAMS TAKEN</h3>
+                            <div class="stat-value" id="adminExams">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>AVG SCORE</h3>
+                            <div class="stat-value" id="adminAvg">0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>PASS RATE</h3>
+                            <div class="stat-value" id="adminPass">0%</div>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="exportToExcel()">📊 Export to Excel</button>
+                </div>
+                <div id="adminUsersTab" class="hidden">
+                    <h2 style="margin-bottom: 20px; color: var(--primary);">User Management</h2>
+                    <div id="userTable"></div>
+                </div>
+                <div id="adminAnalytics" class="hidden">
+                    <h2 style="margin-bottom: 20px; color: var(--primary);">Analytics</h2>
+                    <div id="analyticsContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database
+        const DB = {
+            users: 'acca_users',
+            current: 'acca_current',
+            history: 'acca_history'
+        };
+
+        let currentModule = null;
+        let currentExam = null;
+        let examResults = null;
+
+        // Module Definitions - ALL 13 MODULES (exposed globally)
+        window.MODULES = {
+            // Applied Knowledge
+            BT: { name: 'Business & Technology', code: 'BT/F1', desc: 'Business organizations, leadership, accounting basics', level: 'knowledge' },
+            MA: { name: 'Management Accounting', code: 'MA/F2', desc: 'Costing techniques, budgeting, performance', level: 'knowledge' },
+            FA: { name: 'Financial Accounting', code: 'FA/F3', desc: 'Double-entry, financial statements, consolidation', level: 'knowledge' },
+            
+            // Applied Skills
+            LW: { name: 'Corporate & Business Law', code: 'LW/F4', desc: 'Legal system, contracts, company law', level: 'skills' },
+            PM: { name: 'Performance Management', code: 'PM/F5', desc: 'Advanced costing, decision making, budgeting', level: 'skills' },
+            TX: { name: 'Taxation', code: 'TX/F6', desc: 'Income tax, corporation tax, VAT', level: 'skills' },
+            FR: { name: 'Financial Reporting', code: 'FR/F7', desc: 'IFRS, group accounts, analysis', level: 'skills' },
+            AA: { name: 'Audit & Assurance', code: 'AA/F8', desc: 'Audit process, evidence, reporting', level: 'skills' },
+            FM: { name: 'Financial Management', code: 'FM/F9', desc: 'Investment appraisal, working capital, risk', level: 'skills' },
+            
+            // Strategic Professional
+            SBL: { name: 'Strategic Business Leader', code: 'SBL', desc: 'Leadership, governance, strategy, ethics', level: 'professional' },
+            SBR: { name: 'Strategic Business Reporting', code: 'SBR', desc: 'Advanced reporting, ethical issues, stakeholder needs', level: 'professional' },
+            AFM: { name: 'Advanced Financial Management', code: 'AFM', desc: 'Advanced investment appraisal, risk management', level: 'professional' },
+            APM: { name: 'Advanced Performance Management', code: 'APM', desc: 'Strategic performance, integrated reporting', level: 'professional' }
+        };
+
+        // Quiz Topics (exposed globally)
+        window.QUIZZES = {
+            BT: ['Business Organizations', 'Stakeholders & Ethics', 'Leadership & Management', 'Accounting Basics', 'Technology & Systems', 'Corporate Governance'],
+            MA: ['Cost Classification', 'Costing Techniques', 'Budgeting', 'Variance Analysis', 'Performance Measurement', 'Decision Making'],
+            FA: ['Double-Entry Bookkeeping', 'Asset Accounting', 'Financial Statements', 'Consolidations', 'Adjustments & Errors', 'Financial Analysis'],
+            LW: ['Legal System', 'Contract Law', 'Employment Law', 'Company Formation', 'Company Management', 'Corporate Governance'],
+            PM: ['Specialist Costing', 'Decision Making', 'Budgeting Systems', 'Advanced Variances', 'Performance Systems', 'Transfer Pricing'],
+            TX: ['Income Tax', 'Employment & Trading', 'Corporation Tax', 'Capital Gains Tax', 'VAT', 'Inheritance Tax'],
+            FR: ['Conceptual Framework', 'Accounting Standards', 'Cash Flow Statements', 'Group Consolidation', 'Associates & JVs', 'Financial Analysis'],
+            AA: ['Audit Framework', 'Planning & Risk', 'Internal Controls', 'Audit Evidence', 'Specific Areas', 'Completion & Reporting'],
+            FM: ['Financial Management Functions', 'Investment Appraisal', 'Working Capital', 'Business Finance', 'Cost of Capital', 'Risk Management'],
+            SBL: ['Leadership & Governance', 'Strategic Analysis', 'Strategic Choice', 'Strategic Implementation', 'Risk & Control', 'Professional Ethics'],
+            SBR: ['Conceptual & Regulatory Framework', 'Group Reporting', 'Specialized Entities', 'Emerging Issues', 'Ethical & Professional Issues', 'Current Developments'],
+            AFM: ['Advanced Investment Appraisal', 'Acquisitions & Mergers', 'Corporate Reconstruction', 'Hedging & Risk', 'Emerging Issues', 'Economic Environment'],
+            APM: ['Strategic Planning', 'Performance Measurement', 'Strategic Performance', 'Performance Evaluation', 'Performance Analysis', 'Strategic Development']
+        };
+
+        // Sample Questions - Loaded dynamically per module
+        window.QUESTIONS = {};
+        
+        // Function to load questions for a specific module
+        function loadModuleQuestions(moduleCode) {
+            return new Promise((resolve, reject) => {
+                // Check if already loaded
+                if (window.QUESTIONS[moduleCode] && window.QUESTIONS[moduleCode].length > 0) {
+                    console.log(`✅ ${moduleCode} questions already loaded`);
+                    resolve();
+                    return;
+                }
+                
+                // Load the questions script dynamically
+                const script = document.createElement('script');
+                script.src = `questions/${moduleCode}-questions.js`;
+                script.onload = () => {
+                    console.log(`✅ ${moduleCode} questions loaded from file`);
+                    resolve();
+                };
+                script.onerror = () => {
+                    console.error(`❌ Failed to load ${moduleCode} questions`);
+                    // Fallback to empty array
+                    window.QUESTIONS[moduleCode] = [];
+                    reject(new Error(`Failed to load ${moduleCode} questions`));
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        // Initialize
+        function init() {
+            if (!localStorage.getItem(DB.users)) {
+                localStorage.setItem(DB.users, JSON.stringify([]));
+            }
+            if (!localStorage.getItem(DB.history)) {
+                localStorage.setItem(DB.history, JSON.stringify([]));
+            }
+            
+            const user = getCurrentUser();
+            if (user) {
+                if (user.isAdmin) {
+                    showAdminDashboard();
+                } else {
+                    showStudentDashboard();
+                }
+            }
+        }
+
+        // Auth Functions
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (username === 'admin' && password === 'admin123') {
+                const admin = { id: 0, username: 'admin', name: 'Administrator', isAdmin: true };
+                localStorage.setItem(DB.current, JSON.stringify(admin));
+                showAdminDashboard();
+                return false;
+            }
+            
+            const users = JSON.parse(localStorage.getItem(DB.users));
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                localStorage.setItem(DB.current, JSON.stringify(user));
+                showStudentDashboard();
+            } else {
+                showError('loginError', 'Invalid credentials');
+            }
+            return false;
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem(DB.users));
+            
+            if (users.find(u => u.username === username)) {
+                showError('registerError', 'Username exists');
+                return false;
+            }
+            
+            const user = {
+                id: Date.now(),
+                name,
+                email,
+                username,
+                password,
+                isAdmin: false,
+                registered: new Date().toISOString()
+            };
+            
+            users.push(user);
+            localStorage.setItem(DB.users, JSON.stringify(users));
+            
+            document.getElementById('registerSuccess').textContent = 'Account created! Please login.';
+            document.getElementById('registerSuccess').classList.remove('hidden');
+            
+            setTimeout(() => showLogin(), 2000);
+            return false;
+        }
+
+        function logout() {
+            localStorage.removeItem(DB.current);
+            showLogin();
+        }
+
+        function getCurrentUser() {
+            const str = localStorage.getItem(DB.current);
+            return str ? JSON.parse(str) : null;
+        }
+
+        function showError(id, msg) {
+            const el = document.getElementById(id);
+            el.textContent = msg;
+            el.classList.remove('hidden');
+        }
+
+        // Navigation
+        function showLogin() {
+            hideAll();
+            document.getElementById('loginScreen').classList.remove('hidden');
+        }
+
+        function showRegister() {
+            hideAll();
+            document.getElementById('registerScreen').classList.remove('hidden');
+        }
+
+        function showStudentDashboard() {
+            hideAll();
+            const user = getCurrentUser();
+            document.getElementById('studentName').textContent = user.name;
+            document.getElementById('studentDashboard').classList.remove('hidden');
+            renderModuleGrid();
+        }
+
+        function showAdminDashboard() {
+            hideAll();
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            showAdminTab('overview');
+        }
+
+        function hideAll() {
+            ['loginScreen', 'registerScreen', 'studentDashboard', 'moduleDashboard', 'examInterface', 'resultsScreen', 'adminDashboard'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+        }
+
+        // Module Grid with Grouping
+        function renderModuleGrid() {
+            const container = document.getElementById('moduleContent');
+            container.innerHTML = '';
+            
+            const levels = {
+                knowledge: { title: 'Applied Knowledge', icon: '📚', subtitle: '3 foundational papers' },
+                skills: { title: 'Applied Skills', icon: '📊', subtitle: '6 essential papers' },
+                professional: { title: 'Strategic Professional', icon: '🎯', subtitle: '4 advanced papers' }
+            };
+            
+            Object.keys(levels).forEach(level => {
+                const levelDiv = document.createElement('div');
+                levelDiv.className = 'module-level';
+                
+                levelDiv.innerHTML = `
+                    <div class="level-header">
+                        <div class="level-icon">${levels[level].icon}</div>
+                        <div>
+                            <div class="level-title">${levels[level].title}</div>
+                            <div class="level-subtitle">${levels[level].subtitle}</div>
+                        </div>
+                    </div>
+                    <div class="module-grid" id="grid-${level}"></div>
+                `;
+                
+                container.appendChild(levelDiv);
+                
+                const grid = document.getElementById(`grid-${level}`);
+                
+                Object.keys(MODULES).forEach(code => {
+                    const mod = MODULES[code];
+                    if (mod.level === level) {
+                        const history = getUserModuleHistory(code);
+                        const attempts = history.length;
+                        const bestScore = attempts > 0 ? Math.max(...history.map(h => h.score)) : 0;
+                        
+                        const card = document.createElement('div');
+                        card.className = `module-card ${level}`;
+                        card.onclick = () => openModule(code);
+                        
+                        card.innerHTML = `
+                            <h3>${mod.name}</h3>
+                            <div class="module-code">${mod.code}</div>
+                            <p>${mod.desc}</p>
+                            <div class="module-stats">
+                                <div>Attempts: ${attempts}</div>
+                                <div>Best: ${bestScore}%</div>
+                            </div>
+                        `;
+                        
+                        grid.appendChild(card);
+                    }
+                });
+            });
+        }
+
+        function openModule(code) {
+            currentModule = code;
+            hideAll();
+            document.getElementById('moduleDashboard').classList.remove('hidden');
+            
+            const mod = window.MODULES[code];
+            document.getElementById('moduleTitle').textContent = `${mod.name} (${mod.code})`;
+            document.getElementById('moduleDescription').textContent = mod.desc;
+            
+            const quizGrid = document.getElementById('quizGrid');
+            quizGrid.innerHTML = '<div style="padding: 20px; text-align: center;">Loading questions...</div>';
+            
+            // Load questions for this module
+            loadModuleQuestions(code).then(() => {
+                // Render quiz cards after questions are loaded
+                quizGrid.innerHTML = '';
+                window.QUIZZES[code].forEach((topic, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'quiz-card';
+                    card.onclick = () => startQuiz(idx);
+                    card.innerHTML = `<h4>Quiz ${idx + 1}</h4><p>${topic}</p>`;
+                    quizGrid.appendChild(card);
+                });
+            }).catch(error => {
+                quizGrid.innerHTML = '<div style="padding: 20px; text-align: center; color: #dc3545;">⚠️ Failed to load questions. Please refresh the page.</div>';
+                console.error(error);
+            });
+        }
+
+        function backToModules() {
+            currentModule = null;
+            showStudentDashboard();
+        }
+
+        // Exam Functions
+        function startFullExam() {
+            const questions = [...QUESTIONS[currentModule]];
+            shuffle(questions);
+            currentExam = {
+                type: 'exam',
+                module: currentModule,
+                questions: questions,
+                answers: {}
+            };
+            showExam();
+        }
+
+        function startQuiz(idx) {
+            const questions = [...QUESTIONS[currentModule]];
+            shuffle(questions);
+            currentExam = {
+                type: 'quiz',
+                module: currentModule,
+                quizId: idx,
+                quizName: QUIZZES[currentModule][idx],
+                questions: questions.slice(0, 3),
+                answers: {}
+            };
+            showExam();
+        }
+
+        function showExam() {
+            hideAll();
+            document.getElementById('examInterface').classList.remove('hidden');
+            
+            const mod = MODULES[currentExam.module];
+            document.getElementById('examTitle').textContent = currentExam.type === 'exam' ? 
+                `${mod.code} Full Exam` : 
+                `${mod.code} - ${currentExam.quizName}`;
+            document.getElementById('examSubtitle').textContent = 
+                `${currentExam.questions.length} questions`;
+            
+            renderQuestions();
+            updateProgress();
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = '';
+            
+            currentExam.questions.forEach((q, idx) => {
+                const block = document.createElement('div');
+                block.className = 'question-block';
+                
+                const optionsHtml = q.options.map((opt, i) => {
+                    const letter = opt.charAt(0);
+                    const id = `q${idx}_${letter}`;
+                    return `
+                        <div class="option" onclick="selectOption(${idx}, '${letter}')">
+                            <input type="radio" name="q${idx}" id="${id}" value="${letter}">
+                            <label for="${id}">${opt}</label>
+                        </div>
+                    `;
+                }).join('');
+                
+                block.innerHTML = `
+                    <div class="question-text"><strong>Q${idx + 1}.</strong> ${q.text}</div>
+                    <div class="options">${optionsHtml}</div>
+                `;
+                
+                container.appendChild(block);
+            });
+        }
+
+        function selectOption(qIdx, answer) {
+            const options = document.querySelectorAll(`input[name="q${qIdx}"]`);
+            options.forEach(opt => {
+                opt.closest('.option').classList.remove('selected');
+            });
+            
+            const selected = document.getElementById(`q${qIdx}_${answer}`);
+            selected.checked = true;
+            selected.closest('.option').classList.add('selected');
+            
+            currentExam.answers[qIdx] = answer;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const answered = Object.keys(currentExam.answers).length;
+            const total = currentExam.questions.length;
+            const pct = (answered / total) * 100;
+            
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = 
+                `${answered} of ${total} answered`;
+        }
+
+        function exitExam() {
+            if (confirm('Exit exam? Progress will be lost.')) {
+                backToModules();
+            }
+        }
+
+        function submitExam() {
+            if (!confirm('Submit exam?')) return;
+            
+            let correct = 0;
+            examResults = [];
+            
+            currentExam.questions.forEach((q, idx) => {
+                const userAnswer = currentExam.answers[idx] || null;
+                const isCorrect = userAnswer === q.answer;
+                if (isCorrect) correct++;
+                
+                examResults.push({
+                    questionNum: idx + 1,
+                    text: q.text,
+                    options: q.options,
+                    userAnswer,
+                    correctAnswer: q.answer,
+                    isCorrect
+                });
+            });
+            
+            const score = Math.round((correct / currentExam.questions.length) * 100);
+            const passed = score >= 50;
+            
+            saveResult(score, correct);
+            showResults(score, correct, passed);
+        }
+
+        function saveResult(score, correct) {
+            const user = getCurrentUser();
+            const history = JSON.parse(localStorage.getItem(DB.history));
+            
+            history.push({
+                userId: user.id,
+                module: currentExam.module,
+                type: currentExam.type,
+                quizId: currentExam.quizId,
+                date: new Date().toISOString(),
+                score,
+                correct,
+                total: currentExam.questions.length
+            });
+            
+            localStorage.setItem(DB.history, JSON.stringify(history));
+        }
+
+        function showResults(score, correct, passed) {
+            hideAll();
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            
+            const header = document.getElementById('resultsHeader');
+            header.className = 'results-header ' + (passed ? 'pass' : 'fail');
+            
+            document.getElementById('resultTitle').textContent = 
+                passed ? '🎉 Congratulations!' : '📚 Keep Studying!';
+            document.getElementById('scoreDisplay').textContent = score + '%';
+            document.getElementById('resultMessage').textContent = 
+                passed ? 'You passed!' : 'More practice needed';
+            
+            document.getElementById('totalScore').textContent = `${score}%`;
+            document.getElementById('correctCount').textContent = 
+                `${correct}/${currentExam.questions.length}`;
+            document.getElementById('passStatus').textContent = 
+                passed ? 'PASS ✓' : 'FAIL ✗';
+            
+            renderReview();
+        }
+
+        function renderReview() {
+            let correctCount = 0;
+            let incorrectCount = 0;
+            
+            examResults.forEach(r => {
+                if (r.isCorrect) correctCount++;
+                else if (r.userAnswer) incorrectCount++;
+            });
+            
+            document.getElementById('countAll').textContent = examResults.length;
+            document.getElementById('countCorrect').textContent = correctCount;
+            document.getElementById('countIncorrect').textContent = incorrectCount;
+            
+            const container = document.getElementById('reviewContent');
+            container.innerHTML = '';
+            
+            examResults.forEach(r => {
+                const div = document.createElement('div');
+                div.className = 'review-question';
+                div.setAttribute('data-filter', r.isCorrect ? 'correct' : (r.userAnswer ? 'incorrect' : 'unanswered'));
+                
+                const badgeClass = r.isCorrect ? 'correct' : (r.userAnswer ? 'incorrect' : 'unanswered');
+                const badgeText = r.isCorrect ? '✓ Correct' : (r.userAnswer ? '✗ Incorrect' : '? Unanswered');
+                
+                const yourAns = r.userAnswer ? 
+                    r.options.find(o => o.startsWith(r.userAnswer)) || 'Not answered' :
+                    'Not answered';
+                
+                const correctAns = r.options.find(o => o.startsWith(r.correctAnswer));
+                
+                div.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <strong>Question ${r.questionNum}</strong>
+                        <span class="review-result-badge ${badgeClass}">${badgeText}</span>
+                    </div>
+                    <div style="background: var(--light); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        ${r.text}
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; background: ${r.isCorrect ? '#e3f2fd' : '#f8d7da'}; border-radius: 5px;">
+                        <strong>Your Answer:</strong> ${yourAns}
+                    </div>
+                    ${!r.isCorrect ? `
+                        <div style="padding: 10px; background: #d4edda; border-radius: 5px;">
+                            <strong>Correct Answer:</strong> ${correctAns}
+                        </div>
+                    ` : ''}
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        function filterReview(type) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.closest('.filter-btn').classList.add('active');
+            
+            document.querySelectorAll('.review-question').forEach(q => {
+                const filter = q.getAttribute('data-filter');
+                q.style.display = (type === 'all' || filter === type) ? 'block' : 'none';
+            });
+        }
+
+        function backToModule() {
+            openModule(currentModule);
+        }
+
+        // Admin Functions
+        function showAdminTab(tab) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('adminOverview').classList.add('hidden');
+            document.getElementById('adminUsersTab').classList.add('hidden');
+            document.getElementById('adminAnalytics').classList.add('hidden');
+            
+            if (tab === 'overview') {
+                document.getElementById('adminOverview').classList.remove('hidden');
+                updateAdminStats();
+            } else if (tab === 'users') {
+                document.getElementById('adminUsersTab').classList.remove('hidden');
+                renderUserTable();
+            } else if (tab === 'analytics') {
+                document.getElementById('adminAnalytics').classList.remove('hidden');
+                renderAnalytics();
+            }
+        }
+
+        function updateAdminStats() {
+            const users = JSON.parse(localStorage.getItem(DB.users));
+            const history = JSON.parse(localStorage.getItem(DB.history));
+            
+            document.getElementById('adminUserCount').textContent = users.length;
+            document.getElementById('adminExams').textContent = history.length;
+            
+            if (history.length > 0) {
+                const avg = Math.round(history.reduce((sum, h) => sum + h.score, 0) / history.length);
+                const passCount = history.filter(h => h.score >= 50).length;
+                const passRate = Math.round((passCount / history.length) * 100);
+                
+                document.getElementById('adminAvg').textContent = avg + '%';
+                document.getElementById('adminPass').textContent = passRate + '%';
+            } else {
+                document.getElementById('adminAvg').textContent = '0%';
+                document.getElementById('adminPass').textContent = '0%';
+            }
+        }
+
+        function renderUserTable() {
+            const users = JSON.parse(localStorage.getItem(DB.users));
+            const history = JSON.parse(localStorage.getItem(DB.history));
+            
+            let html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Exams Taken</th>
+                            <th>Avg Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            users.forEach(user => {
+                const userHistory = history.filter(h => h.userId === user.id);
+                const examCount = userHistory.length;
+                const avgScore = examCount > 0 ? 
+                    Math.round(userHistory.reduce((sum, h) => sum + h.score, 0) / examCount) : 
+                    0;
+                
+                html += `
+                    <tr>
+                        <td>${user.name}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${examCount}</td>
+                        <td>${avgScore}%</td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table>';
+            document.getElementById('userTable').innerHTML = html;
+        }
+
+        function renderAnalytics() {
+            const history = JSON.parse(localStorage.getItem(DB.history));
+            
+            let html = '<h3>Module Statistics</h3><table class="data-table"><thead><tr><th>Module</th><th>Attempts</th><th>Avg Score</th></tr></thead><tbody>';
+            
+            Object.keys(MODULES).forEach(code => {
+                const moduleHistory = history.filter(h => h.module === code);
+                const count = moduleHistory.length;
+                const avg = count > 0 ? Math.round(moduleHistory.reduce((sum, h) => sum + h.score, 0) / count) : 0;
+                
+                html += `<tr><td>${MODULES[code].name} (${MODULES[code].code})</td><td>${count}</td><td>${avg}%</td></tr>`;
+            });
+            
+            html += '</tbody></table>';
+            document.getElementById('analyticsContent').innerHTML = html;
+        }
+
+        function exportToExcel() {
+            const users = JSON.parse(localStorage.getItem(DB.users));
+            const history = JSON.parse(localStorage.getItem(DB.history));
+            
+            let csv = 'Name,Username,Email,Module,Type,Score,Date\n';
+            
+            history.forEach(h => {
+                const user = users.find(u => u.id === h.userId);
+                if (user) {
+                    csv += `${user.name},${user.username},${user.email},${h.module},${h.type},${h.score},${h.date}\n`;
+                }
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'acca-data.csv';
+            a.click();
+        }
+
+        // Utilities
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function getUserModuleHistory(module) {
+            const user = getCurrentUser();
+            const history = JSON.parse(localStorage.getItem(DB.history));
+            return history.filter(h => h.userId === user.id && h.module === module);
+        }
+
+        // Initialize
+        init();
+    </script>
+    <script src="dashboard.js?v=4"></script>
+</body>
+</html>
