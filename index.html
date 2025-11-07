@@ -1399,10 +1399,14 @@
                 correctIdx = q.answer;
             }
             
-            // Remove A. B. C. D. prefixes
-            const cleanOpts = q.options.map(o => 
-                typeof o === 'string' ? o.replace(/^[A-D]\.?\s*/, '') : o
-            );
+            // Clean options only if they have the "A. " prefix format
+            const cleanOpts = q.options.map(o => {
+                if (typeof o === 'string' && /^[A-D]\.\s+/.test(o)) {
+                    // Only remove if it matches "A. " or "B. " format
+                    return o.replace(/^[A-D]\.\s+/, '');
+                }
+                return o; // Return as-is if no prefix
+            });
             
             // Shuffle using Fisher-Yates
             const indices = cleanOpts.map((_, i) => i);
