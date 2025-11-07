@@ -1,59 +1,92 @@
-// ACCA BT Business and Technology - Set 1 (Questions 1-25)
-// High quality detailed questions matching real ACCA standard
+// ACCA BT Business and Technology - Set 1 (40 questions)
+// PROPER FORMAT: Mix of 1-mark and 2-mark questions
 
 window.QUESTIONS = window.QUESTIONS || {};
 window.QUESTIONS.BT = [];
 
 window.QUESTIONS.BT.push(
-{text:'Which of the following best describes a stakeholder of an organization?',options:['Any person who is affected by the decisions and actions of the organization','Any individual or group who has an interest in the organization and can affect or be affected by its activities','Only the shareholders who own equity in the company','External parties who supply goods and services to the organization'],answer:'B',marks:2},
+// === SECTION A: 1-MARK QUESTIONS (Simpler, shorter) ===
 
-{text:'ABC Ltd has recently appointed three non-executive directors to its board. What is the PRIMARY role of non-executive directors?',options:['To manage the day-to-day operations of the company and implement strategic decisions','To provide independent oversight and challenge to executive directors\' decisions and strategy','To represent the interests of employees in board meetings and negotiations','To handle customer complaints and manage stakeholder relationships'],answer:'B',marks:2},
+{text:'A stakeholder is someone who has an interest in an organization.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'A manufacturing company has discovered that 15% of its total production output is defective and must be scrapped. Which of the following quality cost categories would include the cost of scrapping these defective items?',options:['Prevention costs - costs incurred to prevent defects from occurring','Appraisal costs - costs of inspecting and testing products','Internal failure costs - costs of defects discovered before delivery to customers','External failure costs - costs of defects discovered after delivery to customers'],answer:'C',marks:2},
+{text:'Limited liability means shareholders can lose their personal assets.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'Which type of organizational structure groups activities according to business functions such as marketing, finance, production, and human resources?',options:['Divisional structure organized by product lines or geographical regions','Functional structure organized by specialized business activities','Matrix structure combining functional and project-based reporting','Flat structure with minimal hierarchical levels'],answer:'B',marks:2},
+{text:'A mission statement defines an organization\'s purpose.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'According to Maslow\'s hierarchy of needs theory, which category of human needs must be satisfied FIRST before an individual can progress to higher-level needs?',options:['Safety and security needs including job security and safe working conditions','Self-actualization needs including personal growth and fulfillment','Physiological needs including food, water, shelter, and basic survival','Social and belonging needs including friendship and team membership'],answer:'C',marks:2},
+{text:'Centralization means decision-making authority is concentrated at the top.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'XYZ Company operates in a market with many competitors selling similar products at comparable prices. Customers can easily compare offerings and switch between suppliers with minimal cost or effort. According to Porter\'s Five Forces model, what does this scenario primarily describe?',options:['High threat of new entrants due to low barriers to entry in the market','High bargaining power of buyers due to many alternatives and low switching costs','Low intensity of competitive rivalry among existing firms','High threat of substitute products or services from other industries'],answer:'B',marks:2},
+{text:'Span of control refers to the number of subordinates reporting to a manager.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'According to Belbin\'s team role theory, which of the following is a characteristic of an effective, high-performing team?',options:['All team members possess identical skills and experience to avoid conflicts','The team has a balanced mix of different roles and complementary personalities','The team operates without any formal leadership structure or authority','All major decisions are made exclusively by the team manager without consultation'],answer:'B',marks:2},
+{text:'Non-executive directors are full-time employees of the company.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'An organization\'s mission statement serves what primary purpose?',options:['To define specific long-term financial targets and profitability objectives','To articulate the organization\'s fundamental purpose and reason for existence','To outline the detailed organizational structure and reporting relationships','To specify the marketing strategy and tactical plans for the upcoming year'],answer:'B',marks:2},
+{text:'An audit committee reviews financial statements and external auditor relationships.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'In Tuckman\'s model of team development, which stage is typically characterized by interpersonal conflict as team members compete for position, influence, and acceptance of their ideas?',options:['Forming - when team members first come together and establish initial relationships','Storming - when conflicts emerge as members assert themselves and challenge others','Norming - when the team establishes agreed working practices and cohesion','Performing - when the team operates at maximum effectiveness toward goals'],answer:'B',marks:2},
+{text:'Fiscal policy involves government decisions about taxation and spending.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'Which leadership style is characterized by the leader making all important decisions without consulting team members or seeking their input?',options:['Democratic leadership where decisions are made through group discussion and participation','Laissez-faire leadership where the leader delegates most authority and provides minimal direction','Autocratic leadership where the leader retains all decision-making power and authority','Transformational leadership where the leader inspires change through vision and motivation'],answer:'C',marks:2},
+{text:'A monopoly has many competing suppliers.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'A company has implemented a tall organizational structure. Which of the following is a typical characteristic of such a structure?',options:['Wide spans of control with managers supervising many subordinates directly','Few levels of hierarchy between top management and front-line employees','Many levels of management creating multiple layers in the organizational hierarchy','High degree of delegation with decision-making authority distributed throughout levels'],answer:'C',marks:2},
+{text:'Job enrichment means adding more tasks at the same level.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'Corporate governance is primarily concerned with which of the following?',options:['The day-to-day operational management of business processes and activities','The system by which companies are directed, controlled, and held accountable','The development and implementation of marketing and sales strategies','The optimization of production efficiency and cost reduction initiatives'],answer:'B',marks:2},
+{text:'According to Maslow, physiological needs must be satisfied first.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'Which committee of the board of directors is typically responsible for reviewing the integrity of financial statements and maintaining an appropriate relationship with external auditors?',options:['The remuneration committee which determines executive compensation packages','The nomination committee which identifies and appoints new board members','The audit committee which oversees financial reporting and internal controls','The risk committee which monitors enterprise-wide risk management'],answer:'C',marks:2},
+{text:'Theory X managers believe employees are naturally motivated.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'A region is experiencing STRUCTURAL unemployment. What does this type of unemployment mean?',options:['Unemployment resulting from seasonal variations in demand for labor in certain industries','Unemployment caused by a general economic recession or downturn in business activity','Unemployment due to a mismatch between the skills workers possess and the skills employers require','Short-term unemployment occurring while workers are between jobs or searching for new positions'],answer:'C',marks:2},
+{text:'A public limited company (plc) can offer shares to the general public.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'Which of the following best describes the management concept of SPAN OF CONTROL?',options:['The number of hierarchical levels existing within the organizational structure','The number of subordinates who report directly to a particular manager or supervisor','The degree of centralization or delegation in organizational decision-making processes','The geographical scope and spread of an organization\'s operations and activities'],answer:'B',marks:2},
+{text:'Working capital equals current assets minus current liabilities.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'According to Herzberg\'s two-factor theory of motivation, which of the following is classified as a MOTIVATOR factor that can create job satisfaction?',options:['Salary level and compensation package provided to employees','Physical working conditions and the quality of the work environment','Job security and the stability of employment within the organization','Achievement, recognition, and opportunities for personal growth and advancement'],answer:'D',marks:2},
+{text:'Primary research uses existing published data.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'A manufacturing company decides to implement Just-in-Time (JIT) inventory management. What is the PRIMARY objective of adopting a JIT system?',options:['To maximize inventory levels to ensure high levels of customer service and satisfaction','To minimize inventory holding costs, reduce waste, and improve production efficiency','To increase dependency on suppliers by transferring inventory management responsibility','To reduce product quality standards in order to speed up production processes'],answer:'B',marks:2},
+{text:'E-commerce involves buying and selling online.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
 
-{text:'Which pricing strategy involves initially setting a LOW price for a new product in order to gain market share and penetrate the market quickly?',options:['Price skimming strategy where prices start high and gradually decrease over time','Penetration pricing strategy designed to capture market share through low initial prices','Cost-plus pricing where a standard markup is added to the product cost','Premium pricing strategy positioning the product as high-quality and exclusive'],answer:'B',marks:2},
+// === SECTION A: 2-MARK QUESTIONS (Standard difficulty) ===
 
-{text:'A company sells Product X for £50 per unit. The variable cost per unit is £30. What is the contribution per unit that Product X generates toward covering fixed costs and profit?',options:['£50 representing the total selling price per unit','£30 representing the variable cost per unit','£20 representing the contribution toward fixed costs and profit','£80 representing the total revenue potential'],answer:'C',marks:2},
+{text:'Which of the following best describes a stakeholder of an organization?',options:['Any person affected by the organization\'s decisions','Any individual or group with an interest in the organization','Only shareholders who own equity','External suppliers only'],answer:'B',marks:2},
 
-{text:'Which strategic analysis framework is specifically designed for analyzing macro-environmental factors affecting an organization, including political, economic, social, technological, environmental, and legal factors?',options:['SWOT analysis examining internal strengths and weaknesses with external opportunities and threats','Porter\'s Five Forces model analyzing competitive forces within an industry','PESTEL analysis evaluating external macro-environmental factors beyond the organization\'s control','Ansoff\'s matrix identifying growth strategies based on products and markets'],answer:'C',marks:2},
+{text:'What is the PRIMARY role of non-executive directors?',options:['Manage day-to-day operations','Provide independent oversight and challenge executive decisions','Represent employee interests','Handle customer complaints'],answer:'B',marks:2},
 
-{text:'Which element of the marketing mix (4 Ps) specifically involves decisions about distribution channels, logistics, and how products reach customers?',options:['Product - decisions about features, quality, branding, and product development','Price - decisions about pricing strategies, discounts, and payment terms','Place - decisions about distribution channels, logistics, and market coverage','Promotion - decisions about advertising, sales promotion, and communication'],answer:'C',marks:2},
+{text:'A company discovers 15% of production is defective. Which quality cost category includes scrapping costs?',options:['Prevention costs','Appraisal costs','Internal failure costs','External failure costs'],answer:'C',marks:2},
 
-{text:'A business organization operates in the PUBLIC sector. Which of the following is most likely to be its primary organizational objective?',options:['Profit maximization to generate the highest possible returns for investors','Shareholder wealth maximization through increasing share price and dividends','Providing essential services to the community and meeting social needs','Market share growth and competitive dominance within the industry'],answer:'C',marks:2},
+{text:'Which organizational structure groups activities by function such as marketing, finance, and production?',options:['Divisional structure','Functional structure','Matrix structure','Flat structure'],answer:'B',marks:2},
 
-{text:'According to Mendelow\'s stakeholder mapping matrix, how should an organization manage stakeholders who have HIGH power to influence the organization but LOW interest in its activities?',options:['Keep informed with regular communications about organizational activities and decisions','Keep satisfied by attending to their needs but without overwhelming them with information','Manage closely through active engagement and involvement in key decisions','Monitor with minimum effort as they pose little threat or opportunity'],answer:'B',marks:2},
+{text:'According to Maslow\'s hierarchy, which needs must be satisfied FIRST?',options:['Safety needs','Self-actualization','Physiological needs','Social needs'],answer:'C',marks:2},
 
-{text:'When a manager delegates a task to a subordinate employee, who ultimately remains ACCOUNTABLE for the successful completion of that task and its outcomes?',options:['The subordinate employee who has been assigned to perform the delegated task','The manager who delegated the task retains ultimate accountability for outcomes','Both the manager and subordinate share equal accountability for results','Neither party is accountable once delegation has been properly completed'],answer:'B',marks:2},
+{text:'XYZ Company operates in a market where customers can easily switch suppliers. According to Porter\'s Five Forces, this describes:',options:['High threat of new entrants','High bargaining power of buyers','Low competitive rivalry','High threat of substitutes'],answer:'B',marks:2},
 
-{text:'Which of the following best represents the concept of economies of SCALE in business operations?',options:['Reduced average unit costs as the volume of output and production increases','Increased unit costs resulting from operational complexity and coordination challenges','Diversification into new product lines or markets to spread business risk','Reduced output levels in response to decreasing customer demand'],answer:'A',marks:2}
+{text:'According to Belbin, an effective team has:',options:['All members with identical skills','A balance of different roles and personalities','No formal leader','All decisions made by manager'],answer:'B',marks:2},
+
+{text:'In Tuckman\'s model, which stage features conflict as members compete for position?',options:['Forming','Storming','Norming','Performing'],answer:'B',marks:2},
+
+{text:'Which leadership style involves the leader making all decisions without consulting team members?',options:['Democratic leadership','Laissez-faire leadership','Autocratic leadership','Transformational leadership'],answer:'C',marks:2},
+
+{text:'A tall organizational structure typically has:',options:['Wide spans of control','Few hierarchy levels','Many levels of management','High degree of delegation'],answer:'C',marks:2},
+
+{text:'Corporate governance is primarily concerned with:',options:['Daily operational management','The system by which companies are directed and controlled','Marketing strategies','Production efficiency'],answer:'B',marks:2},
+
+{text:'Which committee reviews financial statements and external auditors?',options:['Remuneration committee','Nomination committee','Audit committee','Risk committee'],answer:'C',marks:2},
+
+{text:'STRUCTURAL unemployment means:',options:['Seasonal demand variations','Economic recession','Mismatch between available skills and required skills','Moving between jobs'],answer:'C',marks:2},
+
+{text:'According to Herzberg, which is a MOTIVATOR factor?',options:['Salary level','Working conditions','Job security','Achievement and recognition'],answer:'D',marks:2},
+
+{text:'Just-in-Time (JIT) inventory management aims to:',options:['Maximize inventory levels','Minimize inventory costs and eliminate waste','Increase supplier dependency','Reduce product quality'],answer:'B',marks:2},
+
+{text:'Setting a LOW initial price to gain market share quickly is called:',options:['Price skimming','Penetration pricing','Cost-plus pricing','Premium pricing'],answer:'B',marks:2},
+
+{text:'Product X sells for £50, variable cost is £30. What is the contribution per unit?',options:['£50','£30','£20','£80'],answer:'C',marks:2},
+
+{text:'Which framework analyzes macro-environmental factors (political, economic, social, technological, environmental, legal)?',options:['SWOT analysis','Porter\'s Five Forces','PESTEL analysis','Ansoff matrix'],answer:'C',marks:2},
+
+{text:'Which marketing mix element involves distribution channels?',options:['Product','Price','Place','Promotion'],answer:'C',marks:2},
+
+{text:'A PUBLIC sector organization\'s primary objective is most likely to be:',options:['Profit maximization','Shareholder wealth maximization','Providing services to the community','Market share growth'],answer:'C',marks:2},
+
+{text:'Mendelow matrix: Stakeholders with HIGH power but LOW interest should be:',options:['Kept informed','Kept satisfied','Managed closely','Monitored minimally'],answer:'B',marks:2},
+
+{text:'When a manager delegates a task, who remains ACCOUNTABLE?',options:['The subordinate','The manager who delegated','Both equally','Neither'],answer:'B',marks:2},
+
+{text:'Economies of SCALE means:',options:['Reduced unit costs as output increases','Increased unit costs from complexity','Diversification into new products','Reduced output from demand changes'],answer:'A',marks:2}
 );
 
-console.log('✅ BT Set 1 loaded: 25 detailed questions (Questions 1-25)');
+console.log('✅ BT Set 1: 40 questions (16 × 1-mark + 24 × 2-mark)');
+,{text:'Cultural web analyzes organizational culture through elements including symbols, power structures, and routines.',options:['True','False'],answer:'A',marks:1,type:'true-false'}

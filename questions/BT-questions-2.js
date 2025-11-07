@@ -1,53 +1,47 @@
-// ACCA BT Business and Technology - Set 2 (Questions 26-50)
+// ACCA BT Set 2 (40 questions)
 window.QUESTIONS.BT.push(
-{text:'The cultural web framework developed by Johnson and Scholes analyzes organizational culture through six interrelated elements. Which of the following is NOT one of these six elements of the cultural web?',options:['Symbols that represent the nature of the organization to employees and outsiders','Rituals and routines representing the way things are typically done in the organization','Financial performance metrics and profitability indicators over recent periods','Power structures identifying where real power and influence reside in the organization'],answer:'C',marks:2},
+// === 1-MARK QUESTIONS ===
+{text:'The cultural web analyzes organizational culture through six elements.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Total Quality Management (TQM) involves only the quality department.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
+{text:'Blake and Mouton\'s grid measures task and people orientation.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Fayol identified marketing as one of the five management functions.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
+{text:'An oligopoly has a few large dominant firms.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Articles of Association set out internal governance rules.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Monetary policy involves government taxation and spending decisions.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
+{text:'A learning organization resists change.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
+{text:'Business process re-engineering involves radical redesign.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'A matrix structure has dual reporting relationships.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Frictional unemployment occurs when people are between jobs.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'GDPR aims to protect personal data from misuse.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Unity of command means employees report to one supervisor only.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'A wide span of control creates a flat structure.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'Mintzberg identified figurehead as an interpersonal role.',options:['True','False'],answer:'A',marks:1,type:'true-false'},
+{text:'CSR means companies only focus on legal compliance.',options:['True','False'],answer:'B',marks:1,type:'true-false'},
 
-{text:'Inventory management involves balancing the trade-off between holding too much inventory (resulting in high carrying costs) and holding too little inventory (risking stockouts and lost sales). What is this optimization challenge commonly called?',options:['Economic order quantity problem seeking the optimal reorder quantity','Inventory control dilemma balancing costs against service levels','Supply chain optimization maximizing efficiency across the network','Working capital management balancing liquidity with profitability'],answer:'B',marks:2},
-
-{text:'Which of the following groups would be classified as INTERNAL stakeholders of a business organization?',options:['Customers who purchase products and suppliers who provide materials','Government regulators and agencies responsible for oversight and compliance','Employees, managers, and directors who work within the organization','Local community groups and residents affected by organizational activities'],answer:'C',marks:2},
-
-{text:'Total Quality Management (TQM) is a comprehensive approach to quality. What is the PRIMARY underlying philosophy of TQM?',options:['Quality is solely the responsibility of a dedicated quality control department','Continuous improvement involving all employees at every level of the organization','Inspecting quality into products at the final stage of the production process','Accepting a certain predetermined level of defects as economically normal'],answer:'B',marks:2},
-
-{text:'The Blake and Mouton Managerial Grid identifies different leadership styles based on two key dimensions. What are these two dimensions?',options:['Task orientation (concern for production) and people orientation (concern for people)','Level of power and influence wielded by the leader over subordinates','Degree of centralization versus delegation in decision-making authority','Amount of planning and control exercised by management'],answer:'A',marks:2},
-
-{text:'Henri Fayol identified five key functions that managers perform. Which of the following is NOT one of Fayol\'s five management functions?',options:['Planning - establishing objectives and determining courses of action','Organizing - arranging resources and tasks to achieve objectives','Controlling - monitoring performance and taking corrective action','Marketing - promoting products and managing customer relationships'],answer:'D',marks:2},
-
-{text:'A monopoly market structure is primarily characterized by which of the following conditions?',options:['Many small firms competing with similar products and no single dominant supplier','One dominant supplier that controls the market and has significant pricing power','Perfect competition with many buyers and sellers trading identical products','Two large firms (duopoly) dominating the market and competing intensely'],answer:'B',marks:2},
-
-{text:'Which legal document typically sets out the internal rules and procedures for the governance and management of a limited company?',options:['The Memorandum of Association defining the company\'s external relationship with third parties','The Articles of Association specifying internal governance rules and procedures','The Annual Report communicating financial performance to shareholders','The Mission Statement articulating the company\'s purpose and values'],answer:'B',marks:2},
-
-{text:'Fiscal policy refers to government decisions and actions related to which of the following economic levers?',options:['Interest rates and control of the money supply in the economy','Levels of taxation and government spending on public services','Exchange rates and the international value of the currency','Regulation of specific industries and competition policy'],answer:'B',marks:2},
-
-{text:'A learning organization is primarily characterized by which of the following attributes?',options:['Resistance to change and preference for maintaining traditional practices','Hierarchical decision-making concentrated exclusively at senior management levels','Continuous learning, knowledge sharing, and adaptation throughout the organization','Rigid adherence to established policies without questioning or innovation'],answer:'C',marks:2},
-
-{text:'According to expectancy theory of motivation developed by Vroom, an individual\'s motivation is determined by three key factors. What are these three factors?',options:['Hygiene factors that prevent dissatisfaction in the workplace','Expectancy (effort-performance), instrumentality (performance-reward), and valence (value of reward)','The five levels of needs in Maslow\'s hierarchy from physiological to self-actualization','Task characteristics including variety, identity, significance, autonomy, and feedback'],answer:'B',marks:2},
-
-{text:'Business process re-engineering (BPR) is a management approach that involves which of the following?',options:['Making minor incremental improvements to existing processes over time','Radical redesign and transformation of core business processes for dramatic improvement','Maintaining current processes while improving employee satisfaction and morale','Outsourcing all non-core activities to external service providers'],answer:'B',marks:2},
-
-{text:'A company implements a matrix organizational structure. What is a typical DISADVANTAGE of operating with a matrix structure?',options:['Lack of functional expertise and specialized knowledge within the organization','Slow response to market changes and customer demands due to bureaucracy','Dual reporting relationships causing potential confusion and conflict for employees','Inability to focus resources and attention on specific projects or products'],answer:'C',marks:2},
-
-{text:'The remuneration committee of the board of directors is primarily responsible for which of the following duties?',options:['Recruiting and hiring employees at all levels throughout the organization','Determining the compensation packages and rewards for executive directors','Managing the company\'s cash flow and working capital requirements','Reviewing and approving all operational expenditures and expenses'],answer:'B',marks:2},
-
-{text:'Which type of unemployment occurs when individuals are temporarily between jobs, having left one position and actively searching for or transitioning to another?',options:['Structural unemployment due to mismatch between available skills and required skills','Cyclical unemployment caused by economic recession or downturn in business activity','Frictional unemployment during normal job search and transition periods','Seasonal unemployment resulting from predictable fluctuations in demand for labor'],answer:'C',marks:2},
-
-{text:'Data protection legislation and regulations such as GDPR primarily aim to achieve what objective?',options:['Prevent all use and collection of personal data by organizations','Protect individuals\' personal information from unauthorized access, misuse, and breaches','Allow companies unlimited and unrestricted access to customer data for any purpose','Reduce information technology costs for businesses through standardization'],answer:'B',marks:2},
-
-{text:'An oligopoly market structure is characterized by which of the following conditions?',options:['Only one supplier dominating the entire market with no competition','A few large dominant firms controlling the majority of the market','Many small competitors offering differentiated products and services','Government ownership and direct control of the industry'],answer:'B',marks:2},
-
-{text:'The management principle of unity of command states which of the following?',options:['Each employee should receive orders and instructions from one supervisor only to avoid confusion','Multiple supervisors improve organizational efficiency through shared responsibility','Command and authority should be shared equally among all managers','Supervisors should minimize giving direct commands to maintain employee autonomy'],answer:'A',marks:2},
-
-{text:'Porter\'s value chain model describes which of the following business concepts?',options:['The chronological sequence of profit generation over the product life cycle','The linked series of activities that create and add value to products or services','The formal chain of command and authority within organizational hierarchy','The distribution channel connecting manufacturers to final customers'],answer:'B',marks:2},
-
-{text:'A business organization has implemented a WIDE span of control for its managers. This typically results in which of the following organizational characteristics?',options:['Many levels of hierarchy creating a tall organizational structure','Close supervision and monitoring of individual employee performance','A relatively flat organizational structure with fewer hierarchical levels','Highly centralized decision-making concentrated at the top management level'],answer:'C',marks:2},
-
-{text:'According to Mintzberg\'s managerial roles framework, which of the following is classified as an interpersonal role that managers perform?',options:['Entrepreneur - initiating change and innovation within the organization','Figurehead - performing ceremonial and symbolic duties as organizational representative','Monitor - scanning environment and gathering information relevant to the organization','Negotiator - representing the organization in negotiations with external parties'],answer:'B',marks:2},
-
-{text:'Corporate social responsibility (CSR) refers to which of the following business philosophies?',options:['Organizations focusing exclusively on legal compliance and regulatory requirements','Companies considering social and environmental impacts of their activities beyond profit maximization','Business strategies aimed at maximizing shareholder returns through cost reduction','Government regulations mandating specific corporate behavior and reporting'],answer:'B',marks:2},
-
-{text:'A mechanistic organizational structure is typically characterized by which of the following features?',options:['Flexible structures with low formalization and minimal rules and procedures','High specialization of tasks, centralized authority, and formal rules and procedures','Decentralized decision-making with authority distributed throughout the organization','Informal communication patterns and minimal documentation requirements'],answer:'B',marks:2},
-
-{text:'Which of the following recruitment methods represents EXTERNAL recruitment rather than internal recruitment?',options:['Promoting existing employees to fill vacant positions at higher levels','Advertising job vacancies in newspapers, online job boards, and recruitment websites','Implementing job rotation programs to develop employees across different functions','Transferring employees between departments or locations within the same organization'],answer:'B',marks:2},
-
-{text:'The primary purpose of conducting employee performance appraisal is to achieve which of the following objectives?',options:['Punish and discipline employees who are underperforming against targets','Assess employee performance objectively and identify development needs and opportunities','Reduce overall salary costs by identifying candidates for redundancy','Eliminate unnecessary job positions and restructure the organization'],answer:'B',marks:2}
+// === 2-MARK QUESTIONS ===
+{text:'The cultural web framework analyzes organizational culture through six elements. Which is NOT one of these?',options:['Symbols','Rituals and routines','Financial performance metrics','Power structures'],answer:'C',marks:2},
+{text:'Inventory management balances holding too much inventory (high costs) versus too little (stockouts). This is called:',options:['Economic order quantity problem','Inventory control dilemma','Supply chain optimization','Working capital management'],answer:'B',marks:2},
+{text:'Which are classified as INTERNAL stakeholders?',options:['Customers and suppliers','Government regulators','Employees and managers','Local community groups'],answer:'C',marks:2},
+{text:'Total Quality Management (TQM) primary philosophy is:',options:['Quality is the responsibility of quality department only','Continuous improvement involving all employees','Inspecting quality at the end of production','Accepting a certain level of defects as normal'],answer:'B',marks:2},
+{text:'Blake and Mouton\'s leadership grid has which two dimensions?',options:['Task orientation and people orientation','Power and influence','Centralization and delegation','Planning and control'],answer:'A',marks:2},
+{text:'Fayol\'s five management functions. Which is NOT one of them?',options:['Planning','Organizing','Controlling','Marketing'],answer:'D',marks:2},
+{text:'A monopoly market structure is characterized by:',options:['Many small competing firms','One dominant supplier controlling the market','Perfect competition','Two firms dominating the market'],answer:'B',marks:2},
+{text:'Which document sets out internal governance rules for a company?',options:['Memorandum of Association','Articles of Association','Annual report','Mission statement'],answer:'B',marks:2},
+{text:'Fiscal policy involves government decisions about:',options:['Interest rates and money supply','Taxation and government spending','Exchange rates','Industry regulation'],answer:'B',marks:2},
+{text:'A learning organization is characterized by:',options:['Resistance to change','Hierarchical decision-making only','Continuous learning and knowledge sharing','Maintaining traditional practices'],answer:'C',marks:2},
+{text:'According to expectancy theory, motivation depends on:',options:['Hygiene factors only','Expectancy, instrumentality, and valence','Hierarchy of needs','Task characteristics alone'],answer:'B',marks:2},
+{text:'Business process re-engineering (BPR) involves:',options:['Minor incremental improvements','Radical redesign of core business processes','Maintaining current processes','Outsourcing all activities'],answer:'B',marks:2},
+{text:'A matrix structure typical DISADVANTAGE is:',options:['Lack of functional expertise','Slow response to market changes','Dual reporting relationships causing confusion','Inability to focus on projects'],answer:'C',marks:2},
+{text:'The remuneration committee is responsible for:',options:['Hiring all employees','Determining executive directors\' pay','Managing cash flow','Approving operational expenses'],answer:'B',marks:2},
+{text:'Frictional unemployment occurs when:',options:['Skills mismatch exists','Economic recession happens','People are between jobs','Seasonal demand varies'],answer:'C',marks:2},
+{text:'Data protection legislation primarily aims to:',options:['Prevent all use of personal data','Protect personal information from misuse','Allow unlimited data access','Reduce IT costs'],answer:'B',marks:2},
+{text:'An oligopoly is characterized by:',options:['Only one supplier','A few large dominant firms','Many small competitors','Government control'],answer:'B',marks:2},
+{text:'Unity of command principle states:',options:['Employees report to one supervisor only','Multiple supervisors improve efficiency','Command shared equally','Supervisors avoid giving commands'],answer:'A',marks:2},
+{text:'Porter\'s value chain describes:',options:['Sequence of profit generation','Series of activities adding value to products/services','Chain of command in organizations','Distribution channel to customers'],answer:'B',marks:2},
+{text:'A WIDE span of control typically results in:',options:['Many hierarchy levels','Close employee supervision','A flat organizational structure','Centralized decision-making'],answer:'C',marks:2},
+{text:'Mintzberg: which is an interpersonal managerial role?',options:['Entrepreneur','Figurehead','Monitor','Negotiator'],answer:'B',marks:2},
+{text:'Corporate social responsibility (CSR) refers to:',options:['Legal obligations only','Companies considering social/environmental impacts beyond profits','Maximizing shareholder returns only','Government regulations'],answer:'B',marks:2},
+{text:'A mechanistic organization is characterized by:',options:['Flexible structures with low formalization','High specialization and centralized authority','Decentralized decision-making','Informal communication'],answer:'B',marks:2},
+{text:'EXTERNAL recruitment example:',options:['Promoting existing staff','Advertising vacancies in newspapers','Job rotation within company','Internal employee transfer'],answer:'B',marks:2}
 );
-console.log('✅ BT Set 2 loaded: 25 detailed questions (Questions 26-50)');
+console.log('✅ BT Set 2: 40 questions');
